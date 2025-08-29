@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire Identité</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1877ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .form-container {
+            background: rgb(119, 114, 114);
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        button {
+            flex: 1;
+            margin-top: 15px;
+            padding: 10px;
+            background: #007bff;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #0056b3;
+        }
+        
+        #resetBtn {
+            background: #dc3545;
+        }
+        
+        #resetBtn:hover {
+            background: #a71d2a;
+        }
+        
+        #resultat {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e9f7ef;
+            border-radius: 10px;
+            border: 1px solid #b2dfdb;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Entrer vos identités</h2>
+        <form id="identiteForm">
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="telephone">Téléphone :</label>
+            <input type="tel" id="telephone" name="telephone">
+
+            <div class="buttons">
+                <button type="submit">Afficher</button>
+                <button type="button" id="resetBtn">Réinitialiser</button>
+            </div>
+        </form>
+
+        <div id="resultat"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById("identiteForm");
+        const resultat = document.getElementById("resultat");
+        const resetBtn = document.getElementById("resetBtn");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Empêche le rechargement
+
+            // Récupération des valeurs
+            let prenom = document.getElementById("prenom").value;
+            let nom = document.getElementById("nom").value;
+            let email = document.getElementById("email").value;
+            let telephone = document.getElementById("telephone").value;
+
+            // Affichage
+            resultat.innerHTML = `
+                <h3>Informations saisies :</h3>
+                <p><strong>Prénom :</strong> ${prenom}</p>
+                <p><strong>Nom :</strong> ${nom}</p>
+                <p><strong>Email :</strong> ${email}</p>
+                <p><strong>Téléphone :</strong> ${telephone}</p>
+            `;
+        });
+
+        // Réinitialiser
+        resetBtn.addEventListener("click", function() {
+            form.reset(); // Vide les champs
+            resultat.innerHTML = ""; // Efface l'affichage
+        });
+    </script>
+</body>
+
+</html>
